@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crops - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="heatmap.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Smart Crops</h1>
+        </div>
+        <div class="header-right">
+            <select class="language-selector" id="langSelector">
+                <option value="en">English</option>
+                <option value="hi">हिंदी</option>
+                <option value="mr">मराठी</option>
+            </select>
+            <button class="login-btn" onclick="handleLogin()">Login</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="alert-banner">
+            <span class="alert-icon">⚠️</span>
+            <div class="alert-content">
+                <h3>Weather Alert</h3>
+                <p>Heavy rainfall expected in Punjab region - Next 48 hours</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card weather" onclick="handleNavigation('weather')">
+                <div class="card-icon">🌤️</div>
+                <h2>Weather Forecast</h2>
+                <p>7-day accurate predictions</p>
+            </div>
+
+            <div class="card planner" onclick="handleNavigation('planner')">
+                <div class="card-icon">📅</div>
+                <h2>Crop Planner</h2>
+                <p>Plan your season</p>
+            </div>
+
+            <div class="card disease" onclick="handleNavigation('disease')">
+                <div class="card-icon">🔬</div>
+                <h2>Disease Detection</h2>
+                <p>Identify crop diseases</p>
+            </div>
+
+            <div class="card" onclick="handleNavigation('market')">
+                <div class="card-icon">💰</div>
+                <h2>Heatmap</h2>
+                <p>Manages risks</p>
+            </div>
+
+            <div class="card" onclick="handleNavigation('advisory')">
+                <div class="card-icon">💡</div>
+                <h2>Market price</h2>
+                <p>Get Live Market price</p>
+            </div>
+
+            <div class="card" onclick="handleNavigation('schemes')">
+                <div class="card-icon">🎯</div>
+                <h2>Govt. Schemes</h2>
+                <p>Available subsidies</p>
+            </div>
+        </div>
+
+    <div id="heatmapSection" class="heatmap-section">
+            <div class="heatmap-header">
+                <span style="font-size: 2rem;">🗺️</span>
+                <h2>Crop Disease Outbreak Heatmap</h2>
+            </div>
+            <div class="heatmap-grid">
+                <div class="heatmap-item high">
+                    <div class="region-name">Punjab</div>
+                    <div class="outbreak-level">High Risk - Leaf Blight</div>
+                </div>
+                <div class="heatmap-item medium">
+                    <div class="region-name">Uttar Pradesh</div>
+                    <div class="outbreak-level">Medium Risk - Rust</div>
+                </div>
+                <div class="heatmap-item low">
+                    <div class="region-name">Maharashtra</div>
+                    <div class="outbreak-level">Low Risk - All Clear</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="heatmap.js"></script>
+</body>
+</html>

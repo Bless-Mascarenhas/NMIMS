@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Crop Planner</title>
+    <link rel="stylesheet" href="crop_planner.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <span class="logo-icon">🌾</span>
+            <h1>Smart Crop Planner</h1>
+        </div>
+        <button class="back-btn" onclick="window.history.back()">← Back to Dashboard</button>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Plan Your Perfect Crop Season</h2>
+            <p>Get AI-powered recommendations based on your soil, climate, and budget</p>
+        </div>
+
+        <form id="cropForm" enctype="multipart/form-data">
+            <div class="form-grid">
+                <!-- Region Selection -->
+                <div class="form-group">
+                    <label for="region">
+                        <span class="label-icon">📍</span>
+                        State/Region *
+                    </label>
+                    <select id="region" name="region" required>
+                        <option value="">Select your state</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                    </select>
+                </div>
+
+                <!-- Soil Type -->
+                <div class="form-group">
+                    <label for="soil_type">
+                        <span class="label-icon">🏔️</span>
+                        Soil Type *
+                    </label>
+                    <select id="soil_type" name="soil_type" required>
+                        <option value="">Select soil type</option>
+                        <option value="Clay">Clay (Heavy, retains water)</option>
+                        <option value="Loamy">Loamy (Ideal, balanced)</option>
+                        <option value="Sandy">Sandy (Light, drains quickly)</option>
+                    </select>
+                </div>
+
+                <!-- Water Availability -->
+                <div class="form-group">
+                    <label for="water_availability">
+                        <span class="label-icon">💧</span>
+                        Water Availability *
+                    </label>
+                    <select id="water_availability" name="water_availability" required>
+                        <option value="">Select water availability</option>
+                        <option value="High">High (Canal/River irrigation)</option>
+                        <option value="Medium">Medium (Well/Tube well)</option>
+                        <option value="Low">Low (Rainfed)</option>
+                    </select>
+                </div>
+
+                <!-- Land Area -->
+                <div class="form-group">
+                    <label for="acres">
+                        <span class="label-icon">📐</span>
+                        Land Area (Acres) *
+                    </label>
+                    <input type="number" id="acres" name="acres" min="0.1" step="0.1" placeholder="Enter acres" required>
+                </div>
+
+                <!-- Budget -->
+                <div class="form-group">
+                    <label for="budget">
+                        <span class="label-icon">💰</span>
+                        Budget (₹) *
+                    </label>
+                    <input type="number" id="budget" name="budget" min="1000" step="1000" placeholder="Enter budget" required>
+                </div>
+
+                <!-- Season -->
+                <div class="form-group">
+                    <label for="season">
+                        <span class="label-icon">🌤️</span>
+                        Season *
+                    </label>
+                    <select id="season" name="season" required>
+                        <option value="">Select season</option>
+                        <option value="Kharif">Kharif (June-Oct)</option>
+                        <option value="Rabi">Rabi (Oct-Mar)</option>
+                    </select>
+                </div>
+
+                <!-- pH Level -->
+                <div class="form-group">
+                    <label for="ph">
+                        <span class="label-icon">🔬</span>
+                        Soil pH Level *
+                    </label>
+                    <input type="number" id="ph" name="ph" min="4" max="10" step="0.1" placeholder="e.g., 7.0" required>
+                    <small>Normal range: 6.0 - 8.0</small>
+                </div>
+            </div>
+
+            <!-- Disease/Symptoms Section -->
+            <div class="disease-section">
+                <h3>
+                    <span class="label-icon">🔍</span>
+                    Disease Detection (Optional)
+                </h3>
+                
+                <div class="form-group">
+                    <label for="symptoms">Observed Symptoms Description</label>
+                    <textarea id="symptoms" name="symptoms" rows="3" placeholder="Describe any issues: yellowing leaves, brown spots, wilting, etc."></textarea>
+                </div>
+
+                <div class="image-upload-section">
+                    <label class="upload-label">
+                        <span class="label-icon">📸</span>
+                        Upload Crop Photo
+                    </label>
+                    
+                    <div class="upload-options">
+                        <div class="upload-btn-wrapper">
+                            <button type="button" class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                                📁 Choose File
+                            </button>
+                            <input type="file" id="fileInput" name="image" accept="image/*" style="display: none;" onchange="handleFileSelect(event)">
+                        </div>
+                        
+                        <div class="upload-btn-wrapper">
+                            <button type="button" class="upload-btn camera-btn" onclick="openCamera()">
+                                📷 Take Photo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="imagePreview" class="image-preview"></div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span>🚀 Analyze & Get Recommendations</span>
+            </button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section" style="display: none;">
+            <h2>📊 Analysis Results</h2>
+
+            <!-- Weather Info -->
+            <div id="weatherCard" class="info-card"></div>
+
+            <!-- pH Analysis -->
+            <div id="phCard" class="info-card"></div>
+
+            <!-- Disease Analysis -->
+            <div id="diseaseCard" class="info-card" style="display: none;"></div>
+
+            <!-- Crop Recommendations -->
+            <div class="recommendations-section">
+                <h3>🌱 Recommended Crops</h3>
+                <div id="cropRecommendations" class="crop-grid"></div>
+            </div>
+
+            <!-- Planting Calendar -->
+            <div class="calendar-section">
+                <h3>📅 Planting Calendar</h3>
+                <div id="plantingCalendar" class="calendar-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Camera Modal -->
+    <div id="cameraModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCamera()">&times;</span>
+            <h3>Take Photo</h3>
+            <video id="video" autoplay></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <button onclick="capturePhoto()" class="capture-btn">📸 Capture</button>
+        </div>
+    </div>
+
+    <script src="crop-planner.js"></script>
+</body>
+</html>

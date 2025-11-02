@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Market Prices - Smart Crops</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="advisory.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🌾</span><h1>Market Prices</h1></div>
+        <div class="header-right">
+            <button onclick="window.history.back()" class="back-btn">← Back</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="market-hero">
+            <h2>Live Market Prices</h2>
+            <p>Search and filter mandi prices by commodity and state. Data shown is mocked for demo.</p>
+
+            <div class="market-controls">
+                <input id="commodityInput" type="text" placeholder="Enter commodity (e.g., Wheat, Rice)" />
+                <select id="stateSelect">
+                    <option value="all">All states</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+                <button id="searchMarket" class="btn">Search</button>
+                <button id="refreshMarket" class="btn outline">Refresh</button>
+            </div>
+        </section>
+
+        <section class="market-results">
+            <table id="marketTable" class="market-table">
+                <thead>
+                    <tr>
+                        <th>Commodity</th>
+                        <th>Mandi</th>
+                        <th>State</th>
+                        <th>Price (₹/quintal)</th>
+                        <th>Unit</th>
+                        <th>Updated</th>
+                    </tr>
+                </thead>
+                <tbody id="marketBody">
+                    <!-- filled by JS -->
+                </tbody>
+            </table>
+            <div id="marketEmpty" class="muted hidden">No results found.</div>
+        </section>
+    </div>
+
+    <script src="advisory.js"></script>
+</body>
+</html>

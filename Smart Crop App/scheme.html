@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Welfare Schemes</title>
+    <link rel="stylesheet" href="schemes.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>🌾 Farmer Welfare Schemes</h1>
+            <p>Empowering Farmers with Government Support Programs</p>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search schemes..." class="search-input">
+                <button id="eligibilityBtn" class="eligibility-btn">Check Eligibility</button>
+            </div>
+
+            <div class="category-filters" id="categoryFilters">
+                <!-- Categories will be dynamically added by JS -->
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-card stat-card-1">
+                <div class="stat-number" id="totalSchemes">0</div>
+                <div class="stat-label">Total Schemes</div>
+            </div>
+            <div class="stat-card stat-card-2">
+                <div class="stat-number" id="totalCategories">0</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card stat-card-3">
+                <div class="stat-number" id="matchingResults">0</div>
+                <div class="stat-label">Matching Results</div>
+            </div>
+        </div>
+
+        <!-- Schemes Grid -->
+        <div id="schemesGrid" class="schemes-grid">
+            <!-- Schemes will be dynamically added by JS -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <p class="no-results-title">No schemes found matching your criteria.</p>
+            <p>Try adjusting your search or filters.</p>
+        </div>
+    </div>
+
+    <!-- Eligibility Checker Modal -->
+    <div id="eligibilityModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Check Your Eligibility</h3>
+            
+            <form id="eligibilityForm">
+                <div class="form-group">
+                    <label>Land Size (in hectares)</label>
+                    <input type="number" id="landSize" step="0.1" placeholder="e.g., 2.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Farmer Type</label>
+                    <select id="farmerType" required>
+                        <option value="">Select type</option>
+                        <option value="small">Small Farmer (up to 2 hectares)</option>
+                        <option value="marginal">Marginal Farmer (up to 1 hectare)</option>
+                        <option value="medium">Medium Farmer (2-10 hectares)</option>
+                        <option value="large">Large Farmer (above 10 hectares)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" id="state" placeholder="e.g., Maharashtra" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="age" placeholder="e.g., 35" required>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-primary">Check Eligibility</button>
+                    <button type="button" id="closeModal" class="btn-secondary">Cancel</button>
+                </div>
+            </form>
+
+            <div id="eligibilityResults" class="eligibility-results" style="display: none;">
+                <!-- Results will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>For more information, visit your nearest agriculture department office or call the helpline</p>
+        <p class="helpline">📞 1800-180-1551 (Kisan Call Center)</p>
+    </footer>
+
+    <script src="schemes.js"></script>
+</body>
+</html>

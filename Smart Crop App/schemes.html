@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Government Schemes - Smart Crops</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="schemes.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><span class="logo-icon">🌾</span><h1>Government Schemes</h1></div>
+        <div class="header-right">
+            <button onclick="window.history.back()" class="back-btn">← Back</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="schemes-hero">
+            <h2>Available Subsidies & Support</h2>
+            <p>Browse government schemes and find applicable programs for your region and crop.</p>
+
+            <div class="schemes-controls">
+                <input id="schemeSearch" type="search" placeholder="Search schemes by name or keyword" />
+                <select id="schemeCategory">
+                    <option value="all">All categories</option>
+                    <option value="insurance">Insurance</option>
+                    <option value="irrigation">Irrigation</option>
+                    <option value="credit">Credit</option>
+                    <option value="soil">Soil Health</option>
+                </select>
+                <select id="schemeRegion">
+                    <option value="all">All regions</option>
+                    <option value="National">National</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+                <button id="clearFilters" class="btn">Clear</button>
+            </div>
+        </section>
+
+        <section class="schemes-list" id="schemesList">
+            <!-- JavaScript will render scheme cards here -->
+        </section>
+
+        <!-- Scheme detail modal -->
+        <div id="schemeModal" class="modal hidden">
+            <div class="modal-content">
+                <button id="closeModal" class="modal-close">×</button>
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+                <p id="modalRegion" class="muted"></p>
+                <a id="modalLink" class="apply-link" href="#" target="_blank">Official page</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="schemes.js"></script>
+</body>
+</html>

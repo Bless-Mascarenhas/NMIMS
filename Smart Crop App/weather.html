@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriWeather - Crop Technology Weather Forecast</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="weather.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container weather-page">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-cloud-sun"></i>
+                <h1>AgriWeather</h1>
+            </div>
+            <p class="tagline">Smart Weather Insights for Modern Farming</p>
+            <div class="data-source">
+                <span id="dataSourceBadge" class="badge hidden"></span>
+            </div>
+        </header>
+
+        <!-- Hero / Intro -->
+        <div class="hero">
+            <div class="hero-left">
+                <h2 id="heroTitle">AgriWeather — Actionable weather for farmers</h2>
+                <p id="heroSubtitle">Enter a city to get crop-focused advice, forecasts, and farming recommendations.</p>
+            </div>
+            <div class="hero-right">
+                <button id="suggestionsBtn" class="cta">Show sample recommendations</button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-section">
+            <div class="search-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="search-group">
+                    <label for="regionSelect">Region</label>
+                    <select id="regionSelect" title="Select region">
+                        <option value="">-- Select region --</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label for="districtSelect">District</label>
+                    <select id="districtSelect" class="hidden" title="Select district">
+                        <option value="">-- Select district --</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label for="citySelect">City</label>
+                    <select id="citySelect" class="hidden" title="Select city">
+                        <option value="">-- Select city --</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label for="cityInput">Or City</label>
+                    <input type="text" id="cityInput" placeholder="Enter city name (e.g., Mumbai, Delhi)">
+                </div>
+                <div class="search-group">
+                    <label for="regionSearch">Regional notes</label>
+                    <textarea id="regionSearch" placeholder="Optional: type region/district details for context (free text)" rows="2"></textarea>
+                </div>
+                <button id="searchBtn">
+                    <i class="fas fa-search"></i>
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error" class="error-message hidden"></div>
+
+        <!-- Weather Alerts -->
+        <div id="alertsSection" class="alerts-section hidden">
+            <h2><i class="fas fa-exclamation-triangle"></i> Active Weather Alerts</h2>
+            <div id="alertsContainer"></div>
+        </div>
+
+        <!-- Current Weather -->
+        <div id="currentWeather" class="current-weather hidden">
+            <div class="weather-header">
+                <div>
+                    <h2 id="cityName"></h2>
+                    <p id="weatherDesc"></p>
+                </div>
+                <div class="weather-icon">
+                    <img id="weatherIcon" src="" alt="Weather icon">
+                </div>
+            </div>
+            
+            <div class="temperature-display">
+                <div class="temp-main">
+                    <span id="temperature"></span>°C
+                </div>
+                <div class="temp-feels">
+                    Feels like <span id="feelsLike"></span>°C
+                </div>
+            </div>
+
+            <div class="weather-details">
+                <div class="detail-item">
+                    <i class="fas fa-tint"></i>
+                    <div>
+                        <p class="detail-label">Humidity</p>
+                        <p class="detail-value" id="humidity"></p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-wind"></i>
+                    <div>
+                        <p class="detail-label">Wind Speed</p>
+                        <p class="detail-value" id="windSpeed"></p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-compress-alt"></i>
+                    <div>
+                        <p class="detail-label">Pressure</p>
+                        <p class="detail-value" id="pressure"></p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <p class="detail-label">Visibility</p>
+                        <p class="detail-value" id="visibility"></p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-cloud"></i>
+                    <div>
+                        <p class="detail-label">Cloudiness</p>
+                        <p class="detail-value" id="clouds"></p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-sun"></i>
+                    <div>
+                        <p class="detail-label">Sunrise/Sunset</p>
+                        <p class="detail-value" id="sunTimes"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5-Day Forecast -->
+        <div id="forecastSection" class="forecast-section hidden">
+            <h2><i class="fas fa-calendar-week"></i> 5-Day Forecast</h2>
+            <div id="forecastContainer" class="forecast-container"></div>
+        </div>
+
+        <!-- Farming Recommendations -->
+        <div id="recommendationsSection" class="recommendations-section hidden">
+            <h2><i class="fas fa-seedling"></i> Farming Recommendations</h2>
+            <div id="recommendationsContainer" class="recommendations-container"></div>
+        </div>
+    </div>
+
+    <script src="weather.js"></script>
+</body>
+</html>
